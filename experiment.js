@@ -71,8 +71,8 @@ var post_task_block = {
    data: {
        trial_id: "post task questions"
    },
-   questions: ['<p class = center-block-text style = "font-size: 20px">Please summarize what you were asked to do in this task.</p>',
-              '<p class = center-block-text style = "font-size: 20px">Do you have any comments about this task?</p>'],
+   questions: ['<p class = center-block-text style = "font-size: 20px">Por favor descreva com poucas palavras o que você fez durante a tarefa.</p>',
+              '<p class = center-block-text style = "font-size: 20px">Você gostaria de fazer algum comentário sobre a tarefa?</p>'],
    rows: [15, 15],
    columns: [60,60]
 };
@@ -90,13 +90,13 @@ var end_block = {
     exp_id: "ax_cpt",
     trial_id: "end"
   },
-  text: '<div class = centerbox><p class = center-block-text>Thanks for completing this task!</p><p class = center-block-text>Press <strong>enter</strong> to continue.</p></div>',
+  text: '<div class = centerbox><p class = center-block-text>Muito obrigada por completar essa tarefa!!</p><p class = center-block-text>Aperte <strong>enter</strong> para continuar.</p></div>',
   cont_key: [13],
   timing_post_trial: 0
 };
 
 var feedback_instruct_text =
-  'Welcome to the experiment. Press <strong>enter</strong> to begin.'
+  'Bem vinda (o) à tarefa de controle cognitivo. Aperte <strong>enter</strong> para começar.'
 var feedback_instruct_block = {
   type: 'poldrack-text',
   cont_key: [13],
@@ -111,10 +111,10 @@ var feedback_instruct_block = {
 var instructions_block = {
   type: 'poldrack-instructions',
   pages: [
-    '<div class = centerbox><p class = block-text>In this task, on each trial you will see a letter presented for a short time, followed by the presentation of another letter. For instance you may see "A", which would then disappear to be replaced by "F".</p><p class = block-text>Your job is to respond by pressing an arrow key during the presentation of the <strong>second</strong> letter. If the first letter was an "A" <strong>AND</strong> the second letter was an "X", press the ' +
-    possible_responses[0][0] + '. Otherwise press the ' + possible_responses[1][0] +
+    '<div class = centerbox><p class = block-text>Durante essa tarefa você verá uma série de cinco letras no centro da tela do computador. As letras aparecerão uma por vez. Você deve prestar muita atenção à primeira e a última letra que estarão escritas em vermelho. Quando a primeira letra for um "A" e a última for um "X" você deve apertar ' +
+    possible_responses[0][0] + ' após a segunda letra, o X. No caso de qualquer outra combinação de letras, você deve apertar ' + possible_responses[1][0] +
     '.</p></div>',
-    '<div class = centerbox><p class = block-text>We will now start the experiment. Remember, press the left arrow key after you see "A" followed by an "X", and the down arrow key for all other combinations.</p></div>'
+    '<div class = centerbox><p class = block-text>. Lembre-se, você deve apertar a tecla Z depois de ver um "A" e um "X". Quando você vir qualquer outra combinação de letras, aperte M.</p></div>'
   ],
   allow_keys: false,
   data: {
@@ -153,8 +153,7 @@ var rest_block = {
   data: {
     trial_id: "rest"
   },
-  text: '<div class = centerbox><p class = block-text>Take a break! Press any key to continue.</p></div>',
-  timing_post_trial: 1000
+  text: '<div class = centerbox><p class = block-text>Está na hora de descansar um pouco! Quando quiser voltar à tarefa aperte ENTER.
 };
 
 var wait_block = {
