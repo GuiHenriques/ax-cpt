@@ -137,11 +137,11 @@ var instruction_node = {
     }
     if (sumInstructTime <= instructTimeThresh * 1000) {
       feedback_instruct_text =
-        'Read through instructions too quickly.  Please take your time and make sure you understand the instructions.  Press <strong>enter</strong> to continue.'
+        'Você leu as instruções rápido demais.  Por favor, leia de novo para ter certeza que as entendeu. Aperte <strong>enter</strong> para continuar.'
       return true
     } else if (sumInstructTime > instructTimeThresh * 1000) {
       feedback_instruct_text =
-        'Done with instructions. Press <strong>enter</strong> to continue.'
+        'As instruções foram lidas. Aperte <strong>enter</strong> para continuar.'
       return false
     }
   }
@@ -163,6 +163,18 @@ var wait_block = {
   choices: 'none',
   data: {
     trial_id: "wait"
+  },
+  timing_post_trial: 1000,
+  timing_stim: 1000,
+  timing_response: 1000
+}
+var fixation = {
+  type: 'poldrack-single-stim',
+  stimulus: '<div class = centerbox><div class = AX_feedback>+</div></div>',
+  is_html: true,
+  choices: 'none',
+  data: {
+    trial_id: "fixation"
   },
   timing_post_trial: 1000,
   timing_stim: 1000,
@@ -292,12 +304,13 @@ for (b = 0; b < blocks.length; b++) {
           probe.data.condition = "dis"
           break;
     }
+    
+    ax_cpt_experiment.push(fixation)
     ax_cpt_experiment.push(cue)
     ax_cpt_experiment.push(distractor)
     ax_cpt_experiment.push(distractor)
     ax_cpt_experiment.push(distractor)
     ax_cpt_experiment.push(probe)
-    ax_cpt_experiment.push(wait_block)
   }
   ax_cpt_experiment.push(attention_node)
   ax_cpt_experiment.push(rest_block)
