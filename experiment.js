@@ -17,9 +17,13 @@ function evalAttentionChecks() {
   return check_percent;
 }
 
-var getChar = function () {
+var getChar = function (isRed) {
+  var textClass = isRed ? "AX_text red-text" : "AX_text";
+
   return (
-    "<div class = centerbox><div class = AX_text>" +
+    "<div class = centerbox><div class='" +
+    textClass +
+    "'>" +
     chars[Math.floor(Math.random() * 22)] +
     "</div></div>"
   );
@@ -195,7 +199,8 @@ var fixation = {
 /* define test block cues and probes*/
 var A_cue = {
   type: "poldrack-single-stim",
-  stimulus: "<div class = centerbox><div class = AX_text>A</div></div>",
+  stimulus:
+    "<div class = centerbox><div class ='AX_text red-text'>A</div></div>",
   is_html: true,
   choices: "none",
   data: {
@@ -210,7 +215,7 @@ var A_cue = {
 
 var other_cue = {
   type: "poldrack-single-stim",
-  stimulus: getChar,
+  stimulus: getChar(true),
   is_html: true,
   choices: "none",
   data: {
@@ -225,7 +230,8 @@ var other_cue = {
 
 var X_probe = {
   type: "poldrack-single-stim",
-  stimulus: "<div class = centerbox><div class = AX_text>X</div></div>",
+  stimulus:
+    "<div class = centerbox><div class='AX_text red-text'>X</div></div>",
   is_html: true,
   choices: [possible_responses[0][1], possible_responses[1][1]],
   data: {
@@ -240,7 +246,7 @@ var X_probe = {
 
 var other_probe = {
   type: "poldrack-single-stim",
-  stimulus: getChar,
+  stimulus: getChar(true),
   is_html: true,
   choices: [possible_responses[0][1], possible_responses[1][1]],
   data: {
@@ -258,7 +264,7 @@ var other_probe = {
 /* ************************************ */
 var distractor = {
   type: "poldrack-single-stim",
-  stimulus: getChar,
+  stimulus: getChar(false),
   is_html: true,
   choices: "none",
   data: {
