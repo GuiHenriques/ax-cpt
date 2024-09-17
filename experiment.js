@@ -179,7 +179,7 @@ var fixation = {
   timing_post_trial: 1000,
   timing_stim: 1000,
   timing_response: 1000
-}
+};
 
 /* define test block cues and probes*/
 var A_cue = {
