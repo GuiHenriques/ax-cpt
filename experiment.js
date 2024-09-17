@@ -34,8 +34,8 @@ var instructTimeThresh = 0 ///in seconds
 
 // task specific variables
 var possible_responses = [
-  ["M key", 77],
-  ["Z key", 90]
+  ["M", 77],
+  ["Z", 90]
 ]
 var chars = 'BCDEFGHIJLMNOPQRSTUVWZ'
 var trial_proportions = ["AX", "AX", "AX", "AX", "AX", "AX", "AX", "BX", "AY", "BY"]
@@ -114,7 +114,7 @@ var instructions_block = {
     '<div class = centerbox><p class = block-text>Durante essa tarefa você verá uma série de cinco letras no centro da tela do computador. As letras aparecerão uma por vez. Você deve prestar muita atenção à primeira e a última letra que estarão escritas em vermelho. Quando a primeira letra for um "A" e a última for um "X" você deve apertar ' +
     possible_responses[0][0] + ' após a segunda letra, o X. No caso de qualquer outra combinação de letras, você deve apertar ' + possible_responses[1][0] +
     '.</p></div>',
-    '<div class = centerbox><p class = block-text>. Lembre-se, você deve apertar a tecla Z depois de ver um "A" e um "X". Quando você vir qualquer outra combinação de letras, aperte M.</p></div>'
+    '<div class = centerbox><p class = block-text>. Lembre-se, você deve apertar a tecla M depois de ver um "A" e um "X". Quando você vir qualquer outra combinação de letras, aperte Z.</p></div>'
   ],
   allow_keys: false,
   data: {
