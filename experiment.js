@@ -156,18 +156,6 @@ var rest_block = {
   text: '<div class = centerbox><p class = block-text>Está na hora de descansar um pouco! Quando quiser voltar à tarefa aperte ENTER.
 };
 
-var wait_block = {
-  type: 'poldrack-single-stim',
-  stimulus: '<div class = centerbox><div class = AX_feedback>Trial over, get ready for the next one.</div></div>',
-  is_html: true,
-  choices: 'none',
-  data: {
-    trial_id: "wait"
-  },
-  timing_post_trial: 1000,
-  timing_stim: 1000,
-  timing_response: 1000
-}
 var fixation = {
   type: 'poldrack-single-stim',
   stimulus: '<div class = centerbox><div class = AX_feedback>+</div></div>',
