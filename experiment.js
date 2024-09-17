@@ -291,7 +291,7 @@ for (b = 0; b < blocks.length; b++) {
           cue.data.condition = "dis"
           probe.data.condition = "dis"
           break;
-    }
+    };
     
     ax_cpt_experiment.push(fixation)
     ax_cpt_experiment.push(cue)
