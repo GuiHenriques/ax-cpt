@@ -153,7 +153,7 @@ var rest_block = {
   data: {
     trial_id: "rest"
   },
-  text: '<div class = centerbox><p class = block-text>Está na hora de descansar um pouco! Quando quiser voltar à tarefa aperte ENTER.
+  text: '<div class = centerbox><p class = block-text>Está na hora de descansar um pouco! Quando quiser voltar à tarefa aperte ENTER. <div class = centerbox><p class = block-text>'
 };
 
 var fixation = {
