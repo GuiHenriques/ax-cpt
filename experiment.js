@@ -29,10 +29,10 @@ var getChar = function (isRed) {
   );
 };
 
-var getInstructFeedback = function () {
+var getInstructFeedback = function (text) {
   return (
     "<div class = centerbox><p class = center-block-text>" +
-    feedback_instruct_text +
+    text +
     "</p></div>"
   );
 };
@@ -49,23 +49,15 @@ var possible_responses = [
   ["Z", 90],
 ];
 var chars = "BCDEFGHIJLMNOPQRSTUVWZ";
-var trial_proportions = [
-  "AX",
-  "AX",
-  "AX",
-  "AX",
-  "AX",
-  "AX",
-  "AX",
-  "BX",
-  "AY",
-  "BY",
-];
-var practice_list = jsPsych.randomization.repeat(trial_proportions, 1);
+var trial_proportions = ["AX","AX","AX","AX","AX","AX","AX","BX", "AY","BY"];
+
+var practice_list = jsPsych.randomization.repeat(trial_proportions, 1); 
+ 
 var block1_list = jsPsych.randomization.repeat(trial_proportions, 4);
 var block2_list = jsPsych.randomization.repeat(trial_proportions, 4);
 var block3_list = jsPsych.randomization.repeat(trial_proportions, 4);
-var blocks = [block1_list, block2_list, block3_list];
+
+var blocks = [practice_list, block1_list, block2_list, block3_list];
 
 /* ************************************ */
 /* Set up jsPsych blocks */
@@ -120,18 +112,50 @@ var end_block = {
   timing_post_trial: 0,
 };
 
-var feedback_instruct_text =
+var feedback_instruct1_text =
   "Bem vinda (o) à tarefa de controle cognitivo. Aperte <strong>enter</strong> para começar.";
-var feedback_instruct_block = {
+
+var feedback_instruct2_text = '<div class="block-text">Durante essa tarefa você verá uma série de cinco letras no centro da tela do computador.</p>\
+ <div class="block-text">As letras aparecerão uma por vez. Você deve prestar muita atenção à primeira e a última letra que estarão escritas em vermelho.</p>\
+ <div class="block-text">Quando a primeira letra for um "A" e a última for um "X" você deve apertar "M" após a última letra, o X.</p>\
+ <div class="block-text">No caso de qualquer outra combinação de letras, você deve apertar "Z".'
+
+var feedback_instruct3_text = 'Lembre-se, você deve apertar a tecla M depois de ver um "A" e um "X". Quando você vir qualquer outra combinação de letras, aperte Z.'
+
+var feedback_instruct1_block = {
   type: "poldrack-text",
   cont_key: [13],
-  text: getInstructFeedback,
+  text: getInstructFeedback(feedback_instruct1_text),
   data: {
     trial_id: "instruction",
   },
   timing_post_trial: 0,
   timing_response: 180000,
 };
+
+var feedback_instruct2_block = {
+  type: "poldrack-text",
+  cont_key: [13],
+  text: getInstructFeedback(feedback_instruct2_text),
+  data: {
+    trial_id: "instruction",
+  },
+  timing_post_trial: 0,
+  timing_response: 180000,
+};
+
+var feedback_instruct3_block = {
+  type: "poldrack-text",
+  cont_key: [13],
+  text: getInstructFeedback(feedback_instruct3_text),
+  data: {
+    trial_id: "instruction",
+  },
+  timing_post_trial: 0,
+  timing_response: 180000,
+};
+
+
 /// This ensures that the subject does not read through the instructions too quickly.  If they do it too quickly, then we will go over the loop again.
 var instructions_block = {
   type: "poldrack-instructions",
@@ -141,7 +165,7 @@ var instructions_block = {
       " após a segunda letra, o X. No caso de qualquer outra combinação de letras, você deve apertar " +
       possible_responses[1][0] +
       ".</p></div>",
-    '<div class = centerbox><p class = block-text>. Lembre-se, você deve apertar a tecla M depois de ver um "A" e um "X". Quando você vir qualquer outra combinação de letras, aperte Z.</p></div>',
+    '<div class = centerbox><p class = block-text>Lembre-se, você deve apertar a tecla M depois de ver um "A" e um "X". Quando você vir qualquer outra combinação de letras, aperte Z.</p></div>',
   ],
   allow_keys: false,
   data: {
@@ -153,7 +177,7 @@ var instructions_block = {
 };
 
 var instruction_node = {
-  timeline: [feedback_instruct_block, instructions_block],
+  timeline: [feedback_instruct1_block, feedback_instruct2_block, feedback_instruct3_block],
   /* This function defines stopping criteria */
   loop_function: function (data) {
     for (i = 0; i < data.length; i++) {
@@ -164,8 +188,8 @@ var instruction_node = {
     }
     if (sumInstructTime <= instructTimeThresh * 1000) {
       feedback_instruct_text =
-        "Você leu as instruções rápido demais.  Por favor, leia de novo para ter certeza que as entendeu. Aperte <strong>enter</strong> para continuar.";
-      return true;
+      "Você leu as instruções rápido demais.  Por favor, leia de novo para ter certeza que as entendeu. Aperte <strong>enter</strong> para continuar.";
+      return false;
     } else if (sumInstructTime > instructTimeThresh * 1000) {
       feedback_instruct_text =
         "As instruções foram lidas. Aperte <strong>enter</strong> para continuar.";
@@ -185,7 +209,7 @@ var rest_block = {
 
 var fixation = {
   type: "poldrack-single-stim",
-  stimulus: "<div class = centerbox><div class = AX_feedback>+</div></div>",
+  stimulus: "<div class = centerbox><div class ='fixation-cross AX_feedback'>+</div></div>",
   is_html: true,
   choices: "none",
   data: {
