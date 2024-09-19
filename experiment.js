@@ -263,8 +263,8 @@ var X_probe = {
     exp_stage: "test",
   },
   timing_stim: 300,
-  timing_response: 1000,
-  response_ends_trial: false,
+  timing_response: 5000,
+  response_ends_trial: true,
   timing_post_trial: 0,
 };
 
@@ -277,9 +277,9 @@ var other_probe = {
     trial_id: "probe",
     exp_stage: "test",
   },
-  timing_stim: 300,
+  timing_stim: 5000,
   timing_response: 1000,
-  response_ends_trial: false,
+  response_ends_trial: true,
   timing_post_trial: 0,
 };
 
