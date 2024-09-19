@@ -206,6 +206,14 @@ var rest_block = {
   },
   text: "<div class = centerbox><p class = block-text>Está na hora de descansar um pouco! Quando quiser voltar à tarefa aperte ENTER. <div class = centerbox><p class = block-text>",
 };
+var end_pratice_block = {
+  type: "poldrack-text",
+  timing_response: 180000,
+  data: {
+    trial_id: "end_practice",
+  },
+  text: "<div class = centerbox><p class = block-text>Você completou a prática. Agora vamos para a tarefa principal. Aperte ENTER para continuar.</p></div>",
+}
 
 var fixation = {
   type: "poldrack-single-stim",
@@ -352,6 +360,10 @@ for (b = 0; b < blocks.length; b++) {
     ax_cpt_experiment.push(distractor);
     ax_cpt_experiment.push(distractor);
     ax_cpt_experiment.push(probe);
+
+    if (b == 0 && i == block.length - 1) {
+      ax_cpt_experiment.push(end_pratice_block);
+    }
   }
   ax_cpt_experiment.push(attention_node);
   ax_cpt_experiment.push(rest_block);
